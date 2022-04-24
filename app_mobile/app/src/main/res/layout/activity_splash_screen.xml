@@ -4,13 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.SplashScreenActivity">
+    tools:context=".view.SplashScreenActivity"
+    android:background="@drawable/background">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Splash Screen"
-        android:gravity="center"
-        android:textSize="40dp"/>
+    <ImageView
+        android:id="@+id/imgViewBatata"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/batata_surpresa" />
+
+    <ImageView
+        android:id="@+id/imgViewLgGalpao"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/logo_galpao_4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
