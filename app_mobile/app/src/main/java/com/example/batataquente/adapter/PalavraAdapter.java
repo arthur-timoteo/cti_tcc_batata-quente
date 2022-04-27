@@ -34,7 +34,7 @@ public class PalavraAdapter extends RecyclerView.Adapter<PalavraAdapter.PalavraV
         this.palavra = palavra;
         this.onClickListener = onClickListener;
         this.opcoes.add(""); this.opcoes.add(""); this.opcoes.add("");
-        
+
         Random g = new Random();
         int r1 = g.nextInt(3);
         int r2 = g.nextInt(3);
