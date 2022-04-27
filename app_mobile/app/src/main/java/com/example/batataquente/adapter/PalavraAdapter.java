@@ -13,12 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.batataquente.R;
 import com.example.batataquente.model.Palavra;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
 public class PalavraAdapter extends RecyclerView.Adapter<PalavraAdapter.PalavraViewHolder> {
 
     private final Palavra palavra;
     private final Context context;
     private final PalavraOnClickListener onClickListener;
-    private final String[] opcoes = new String[3];
+    private final List<String> opcoes = new ArrayList<String>();
 
     public interface PalavraOnClickListener {
         public void onClickPalavra(PalavraViewHolder holder, int idx);
@@ -28,9 +33,23 @@ public class PalavraAdapter extends RecyclerView.Adapter<PalavraAdapter.PalavraV
         this.context = context;
         this.palavra = palavra;
         this.onClickListener = onClickListener;
-        this.opcoes[0] = palavra.PalavraOpcaoCorreta;
-        this.opcoes[1] = palavra.PalavraOpcaoErrada1;
-        this.opcoes[2] = palavra.PalavraOpcaoErrada2;
+        this.opcoes.add(""); this.opcoes.add(""); this.opcoes.add("");
+        
+        Random g = new Random();
+        int r1 = g.nextInt(3);
+        int r2 = g.nextInt(3);
+        int r3 = g.nextInt(3);
+
+        while (r2 == r1 || r2 == r3) {
+            r2= g.nextInt(3);
+        }
+        while (r3 == r1 || r3 == r2) {
+            r3= g.nextInt(3);
+        }
+
+        this.opcoes.set(r1, palavra.PalavraOpcaoErrada1);
+        this.opcoes.set(r2, palavra.PalavraOpcaoCorreta);
+        this.opcoes.set(r3, palavra.PalavraOpcaoErrada2);
     }
 
     @NonNull
@@ -42,7 +61,7 @@ public class PalavraAdapter extends RecyclerView.Adapter<PalavraAdapter.PalavraV
 
     @Override
     public void onBindViewHolder(@NonNull PalavraViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.txtViewOpcao.setText(opcoes[position]);
+        holder.txtViewOpcao.setText(opcoes.get(position));
 
         if (onClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +75,7 @@ public class PalavraAdapter extends RecyclerView.Adapter<PalavraAdapter.PalavraV
 
     @Override
     public int getItemCount() {
-        return opcoes.length;
+        return opcoes.size();
     }
 
     public class PalavraViewHolder extends RecyclerView.ViewHolder {
