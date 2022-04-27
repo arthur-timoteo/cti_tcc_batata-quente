@@ -24,6 +24,7 @@ public class PalavraAdapter extends RecyclerView.Adapter<PalavraAdapter.PalavraV
     private final Context context;
     private final PalavraOnClickListener onClickListener;
     private final List<String> opcoes = new ArrayList<String>();
+    public static int correto = 0;
 
     public interface PalavraOnClickListener {
         public void onClickPalavra(PalavraViewHolder holder, int idx);
@@ -42,6 +43,7 @@ public class PalavraAdapter extends RecyclerView.Adapter<PalavraAdapter.PalavraV
 
         while (r2 == r1 || r2 == r3) {
             r2= g.nextInt(3);
+            correto = r2;
         }
         while (r3 == r1 || r3 == r2) {
             r3= g.nextInt(3);

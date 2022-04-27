@@ -34,6 +34,12 @@ public class JogarFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         txtViewPalavra = view.findViewById(R.id.txtViewPalavra);
 
+        taskPalavra();
+
+        return view;
+    }
+
+    private void taskPalavra(){
         try {
             Palavra palavra = PalavraService.getPalavraAleatoria();
             recyclerView.setAdapter(new PalavraAdapter(getContext(), palavra, onClickPalavra()));
@@ -44,15 +50,18 @@ public class JogarFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        return view;
     }
 
     protected PalavraAdapter.PalavraOnClickListener onClickPalavra() {
         return new PalavraAdapter.PalavraOnClickListener() {
             @Override
             public void onClickPalavra(PalavraAdapter.PalavraViewHolder holder, int idx) {
-                Toast.makeText(getContext(), "Você Acertou, Pontos: ", Toast.LENGTH_SHORT).show();
+                if(holder.getAdapterPosition() == PalavraAdapter.correto){
+                    taskPalavra();
+                    Toast.makeText(getContext(), "Você Acertou", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "Você Errou", Toast.LENGTH_SHORT).show();
+                }
             }
         };
     }
