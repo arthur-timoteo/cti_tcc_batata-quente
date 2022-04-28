@@ -17,6 +17,9 @@ public class MainActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    public int UsuarioPontos = 0;
+    public int UsuarioAcertos = 0;
+    public int UsuarioErros = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

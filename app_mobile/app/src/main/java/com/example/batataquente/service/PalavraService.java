@@ -17,7 +17,7 @@ public class PalavraService {
         int numeroUsuario = 0;
 
         while(numeroUsuario == 0){
-            numeroUsuario = generator.nextInt(10);
+            numeroUsuario = generator.nextInt(3);
         }
 
         HttpHelper http = new HttpHelper();

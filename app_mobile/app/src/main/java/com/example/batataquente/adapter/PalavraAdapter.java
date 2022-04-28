@@ -20,38 +20,18 @@ import java.util.Random;
 
 public class PalavraAdapter extends RecyclerView.Adapter<PalavraAdapter.PalavraViewHolder> {
 
-    private final Palavra palavra;
     private final Context context;
     private final PalavraOnClickListener onClickListener;
-    private final List<String> opcoes = new ArrayList<String>();
-    public static int correto = 0;
+    private List<String> opcoes;
 
     public interface PalavraOnClickListener {
         public void onClickPalavra(PalavraViewHolder holder, int idx);
     }
 
-    public PalavraAdapter(Context context, Palavra palavra, PalavraOnClickListener onClickListener){
+    public PalavraAdapter(Context context, List<String> opcoes, PalavraOnClickListener onClickListener){
         this.context = context;
-        this.palavra = palavra;
         this.onClickListener = onClickListener;
-        this.opcoes.add(""); this.opcoes.add(""); this.opcoes.add("");
-
-        Random g = new Random();
-        int r1 = g.nextInt(3);
-        int r2 = g.nextInt(3);
-        int r3 = g.nextInt(3);
-
-        while (r2 == r1 || r2 == r3) {
-            r2= g.nextInt(3);
-            correto = r2;
-        }
-        while (r3 == r1 || r3 == r2) {
-            r3= g.nextInt(3);
-        }
-
-        this.opcoes.set(r1, palavra.PalavraOpcaoErrada1);
-        this.opcoes.set(r2, palavra.PalavraOpcaoCorreta);
-        this.opcoes.set(r3, palavra.PalavraOpcaoErrada2);
+        this.opcoes = opcoes;
     }
 
     @NonNull
