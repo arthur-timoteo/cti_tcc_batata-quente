@@ -70,7 +70,6 @@ public class JogarFragment extends Fragment {
         return new PalavraAdapter.PalavraOnClickListener() {
             @Override
             public void onClickPalavra(PalavraAdapter.PalavraViewHolder holder, int idx) {
-                System.out.println(opcaoCorreta);
                 if(idx == opcaoCorreta){
                     main.UsuarioPontos += 1;
                     main.UsuarioAcertos += 1;
@@ -80,8 +79,6 @@ public class JogarFragment extends Fragment {
                     main.UsuarioErros += 1;
                     Toast.makeText(getContext(), "Você Errou", Toast.LENGTH_SHORT).show();
                 }
-                System.out.println(idx);
-                System.out.println("============================");
 
                 taskPalavra();
             }
@@ -109,9 +106,6 @@ public class JogarFragment extends Fragment {
         opcoes.set(r1, palavra.PalavraOpcaoErrada1);
         opcoes.set(r2, palavra.PalavraOpcaoCorreta);
         opcoes.set(r3, palavra.PalavraOpcaoErrada2);
-
-        System.out.println("=======================================");
-        System.out.println("Palavra Correta está na posição: " + r2);
 
         return opcoes;
     }

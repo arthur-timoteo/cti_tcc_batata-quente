@@ -20,7 +20,6 @@ public class HttpHelper {
         StringBuffer responseContent = new StringBuffer();
 
         URL u = new URL(BASE_URL + url);
-        System.out.println(u);
         HttpURLConnection conn = null;
         String s = null;
         try {
