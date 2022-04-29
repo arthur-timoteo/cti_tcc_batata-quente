@@ -1,5 +1,7 @@
 package com.example.batataquente.view.fragment;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,6 +18,7 @@ import com.example.batataquente.R;
 import com.example.batataquente.adapter.PalavraAdapter;
 import com.example.batataquente.model.Palavra;
 import com.example.batataquente.service.PalavraService;
+import com.example.batataquente.util.NetworkUtil;
 import com.example.batataquente.view.MainActivity;
 
 import org.json.JSONException;
@@ -52,17 +55,21 @@ public class JogarFragment extends Fragment {
     }
 
     private void taskPalavra(){
-        try {
-            Palavra palavra = PalavraService.getPalavraAleatoria();
+        if(NetworkUtil.isNetworkConnected(getContext())){
+            try {
+                Palavra palavra = PalavraService.getPalavraAleatoria();
 
-            recyclerView.setAdapter(new PalavraAdapter(getContext(), embaralharOpcoes(palavra), onClickPalavra()));
-            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                recyclerView.setAdapter(new PalavraAdapter(getContext(), embaralharOpcoes(palavra), onClickPalavra()));
+                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-            txtViewPalavra.setText(palavra.Palavra);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
+                txtViewPalavra.setText(palavra.Palavra);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Toast.makeText(getContext(), "Erro de conexão de  internet", Toast.LENGTH_SHORT).show();
         }
     }
 
