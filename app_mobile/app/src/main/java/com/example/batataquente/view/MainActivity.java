@@ -2,9 +2,12 @@ package com.example.batataquente.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.batataquente.R;
 import com.example.batataquente.adapter.TLAdapter;
@@ -13,7 +16,7 @@ import com.example.batataquente.view.fragment.ContaFragment;
 import com.example.batataquente.view.fragment.JogarFragment;
 import com.google.android.material.tabs.TabLayout;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -36,5 +39,33 @@ public class MainActivity extends AppCompatActivity {
         tlAdapter.addFragment(new JogarFragment(), "JOGAR");
         tlAdapter.addFragment(new ContaFragment(), "CONTA");
         viewPager.setAdapter(tlAdapter);
+
+        tabLayout = findViewById(R.id.tabLayout);
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
+        tabLayout.addOnTabSelectedListener(this);
+        viewPager.setCurrentItem(0);
+    }
+
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+        if(tab.getPosition() == 2){
+            LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(MainActivity.this);
+            Intent i = new Intent("TAG_REFRESH_AUTENTICACAO");
+            lbm.sendBroadcast(i);
+        }
+
+        viewPager.setCurrentItem(tab.getPosition());
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
     }
 }
