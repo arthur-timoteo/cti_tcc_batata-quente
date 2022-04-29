@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         tabLayout.setupWithViewPager(viewPager);
 
         TLAdapter tlAdapter = new TLAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        tlAdapter.addFragment(new ClassificacaoFragment(), "CLASSIFICAÇÃO");
+        tlAdapter.addFragment(new ClassificacaoFragment(), "RANQUE");
         tlAdapter.addFragment(new JogarFragment(), "JOGAR");
         tlAdapter.addFragment(new ContaFragment(), "CONTA");
         viewPager.setAdapter(tlAdapter);
