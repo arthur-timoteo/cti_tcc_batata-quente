@@ -67,8 +67,10 @@ public class JogarFragment extends Fragment {
                 e.printStackTrace();
             } catch (JSONException e) {
                 e.printStackTrace();
+                txtViewPalavra.setText("Erro na busca");
             }
         } else {
+            txtViewPalavra.setText("Erro de conexão");
             Toast.makeText(getContext(), "Erro de conexão de  internet", Toast.LENGTH_SHORT).show();
         }
     }
