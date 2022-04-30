@@ -50,6 +50,17 @@ This project was developed with the following technologies/libraries:
 
 ## How to run
 
+- Clone repository;
+- Create a `batata_quente_api` folder in `C:\xampp\htdocs\`;
+- Copy files from `...repository\api\` to  `C:\xampp\htdocs\batata_quente_api\`;
+- Open XAMPP Control Panel;
+- Start Apache and MySQL;
+- Click in "Admin" button from MySQL;
+- Create one database and import file `...repository\database\batata_quente.sql` to database created;
+- Access `...repository\app_mobile\app\src\main\java\com\example\batataquente\util\HttpHelper.java`;
+- Change the IP to your computer's IP;
+- Run app (You can run app in the your physical smathphone or android emulator);
+
 ## License
 
 This project is under the MIT license. See the [LICENSE](LICENSE.md) file for more details.
