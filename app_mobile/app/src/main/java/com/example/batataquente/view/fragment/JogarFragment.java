@@ -65,6 +65,7 @@ public class JogarFragment extends Fragment {
                 txtViewPalavra.setText(palavra.Palavra);
             } catch (IOException e) {
                 e.printStackTrace();
+                txtViewPalavra.setText("Erro de conexão com servidor");
             } catch (JSONException e) {
                 e.printStackTrace();
                 txtViewPalavra.setText("Erro na busca");
